@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'SYHT-Normal'; /* 自定义字体名 */
+  src: url('/font/SourceHanSansSC-Normal.otf') format('opentype'); /* 字体文件路径和格式 */
+  font-weight: normal; /* 可选，定义字体粗细 */
+  font-style: normal;  /* 可选，定义字体样式 */
+}
+
+@font-face {
+  font-family: 'SYHT-Bold'; /* 自定义字体名 */
+  src: url('/font/SourceHanSansSC-Bold.otf') format('opentype'); /* 字体文件路径和格式 */
+  font-weight: normal; /* 可选，定义字体粗细 */
+  font-style: normal;  /* 可选，定义字体样式 */
+}
+
+@font-face {
+  font-family: 'Kaiti'; /* 自定义字体名 */
+  src: url('/font/SIMKAI.TTF') format('opentype'); /* 字体文件路径和格式 */
+  font-weight: normal; /* 可选，定义字体粗细 */
+  font-style: normal;  /* 可选，定义字体样式 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "SYHT-Normal", sans-serif;
+}
+
+
