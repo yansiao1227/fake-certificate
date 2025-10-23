@@ -5,8 +5,7 @@
     </header>
     <div class="content">
       <div class="id-card">
-        <span class="xx">崇德博学 砺志尚实</span>
-        <!-- <img src="/xx.png" alt="logo" class="xx-png" /> -->
+        <img src="/xx.png" alt="logo" class="xx-png" />
         <img src="/xh.png" alt="logo" class="xh-png" />
         <div class="name">
           {{ info.name }}
@@ -112,7 +111,7 @@ header {
 }
 header h1 {
   font-size: 1.4rem;
-  font-family: "SYHT-Bold", sans-serif;
+  font-weight: bolder;
 }
 .content {
   background-color: #f5f5f5;
@@ -134,9 +133,9 @@ header h1 {
   padding: 25px;
   padding-top: 50px;
 }
-.xx {
+.xx-png {
   position: absolute;
-  font-family: "KaiTi", sans-serif;
+  width: 140px;
   top: 20px;
   left: 10px;
 }
@@ -162,16 +161,18 @@ header h1 {
   display: flex;
   justify-content: center;
   width: 100%;
+  font-weight: 400;
   font-size: 1.4rem;
 }
 .time {
   display: flex;
   justify-content: center;
   width: 100%;
+  font-weight: 400;
   font-size: 1.2rem;
 }
 .seconds {
-  font-family: "SYHT-Bold", sans-serif;
+  font-weight: 900;
   font-size: 1.2rem;
 }
 .qr-code {
@@ -185,7 +186,7 @@ header h1 {
   justify-content: center;
   width: 100%;
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: 500;
   padding-top: 4px;
   padding-bottom: 8px;
   letter-spacing: 2px;
