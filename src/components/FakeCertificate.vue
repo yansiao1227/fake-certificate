@@ -19,8 +19,13 @@
         <div class="time">
           {{ time1Part }}:<span class="seconds"> {{ time2Part }}</span>
         </div>
-        <div class="qr-code" @click="showInfoArea">
-          <img style="width: 50%" src="/qr-code.png" alt="二维码" />
+        <div class="qr-code">
+          <img
+            style="width: 50%"
+            src="/qr-code.png"
+            alt="二维码"
+            @click="showInfoArea"
+          />
         </div>
 
         <div class="car-number">{{ info.car }}</div>
