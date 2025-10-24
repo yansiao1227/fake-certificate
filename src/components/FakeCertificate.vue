@@ -19,13 +19,13 @@
         <div class="time">
           {{ time1Part }}:<span class="seconds"> {{ time2Part }}</span>
         </div>
-        <div class="qr-code">
+        <div class="qr-code" @click="showInfoArea">
           <img style="width: 50%" src="/qr-code.png" alt="二维码" />
         </div>
 
         <div class="car-number">{{ info.car }}</div>
 
-        <div class="info-area" ref="infoArea">
+        <div class="info-area" v-show="isShow">
           <div class="info-item">
             <span>姓名 </span>
             <input type="text" placeholder="请输入姓名" v-model="info.name" />
@@ -54,7 +54,7 @@
             <span>车牌 </span>
             <input type="text" placeholder="请输入车牌" v-model="info.car" />
           </div>
-          <button class="submit-btn" @click="handleSubmit">隐藏</button>
+          <button class="submit-btn" @click="hideInfoArea">隐藏</button>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@ const formatDate = (date = new Date()) => {
   const ss = String(date.getSeconds()).padStart(2, "0");
   return `${YYYY}-${MM}-${DD} ${HH}:${mm}:${ss}`;
 };
-const formateTime = ref("");
+const formateTime = ref(formatDate());
 const time1Part = computed(() => {
   if (formateTime.value.split(":").length > 1) {
     return formateTime.value.split(":").slice(0, 2).join(":");
@@ -91,11 +91,19 @@ const info = reactive({
   date: formatDate().split(" ")[0],
   car: "沪A363U9",
 });
-const infoArea = ref<HTMLDivElement>();
-const handleSubmit = () => {
-  if (infoArea.value) {
-    infoArea.value.style.display = "none";
+const clickTime = ref(0);
+
+const isShow = ref(false);
+const showInfoArea = () => {
+  if (clickTime.value === 3) {
+    isShow.value = true;
+    clickTime.value = 0;
+  } else {
+    clickTime.value++;
   }
+};
+const hideInfoArea = () => {
+  isShow.value = false;
 };
 setInterval(() => {
   formateTime.value = formatDate();
@@ -114,7 +122,7 @@ header h1 {
   font-weight: bolder;
 }
 .content {
-  background-color: #f5f5f5;
+  background-color: #ebebeb;
   padding: 20px;
   height: calc(100vh - 60px);
   width: 100%;
@@ -193,6 +201,7 @@ header h1 {
 }
 .info-area {
   margin-top: 20px;
+  background-color: #fff;
 }
 .info-item {
   display: flex;
