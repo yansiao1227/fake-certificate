@@ -54,14 +54,18 @@
             <span>车牌 </span>
             <input type="text" placeholder="请输入车牌" v-model="info.car" />
           </div>
-          <button class="submit-btn" @click="hideInfoArea">隐藏</button>
+          <div class="btn-group">
+            <button class="submit-btn" @click="saveInfo">持久化</button>
+            <button class="submit-btn" @click="resetInfo">重置</button>
+            <button class="submit-btn" @click="hideInfoArea">隐藏</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 const formatDate = (date = new Date()) => {
   const YYYY = date.getFullYear();
   const MM = String(date.getMonth() + 1).padStart(2, "0");
@@ -84,26 +88,41 @@ const time2Part = computed(() => {
   }
   return "";
 });
-const info = reactive({
+
+const defaultInfo = {
   name: "吴婷",
   id: "340827*********327",
   phone: "13524292716",
   date: formatDate().split(" ")[0],
   car: "沪A363U9",
-});
-const clickTime = ref(0);
+};
+
+const tempInfo = JSON.parse(localStorage.getItem("info") || "{}");
+const info = ref(Object.keys(tempInfo).length > 0 ? tempInfo : defaultInfo);
 
 const isShow = ref(false);
 const showInfoArea = () => {
-  if (clickTime.value === 3) {
-    isShow.value = true;
-    clickTime.value = 0;
-  } else {
-    clickTime.value++;
-  }
+  isShow.value = true;
 };
 const hideInfoArea = () => {
   isShow.value = false;
+};
+const resetInfo = () => {
+  // 防止浅拷贝
+  const tmp = {
+    name: "吴婷",
+    id: "340827*********327",
+    phone: "13524292716",
+    date: formatDate().split(" ")[0],
+    car: "沪A363U9",
+  };
+  info.value = tmp;
+  localStorage.removeItem("info");
+  alert("信息已重置");
+};
+const saveInfo = () => {
+  localStorage.setItem("info", JSON.stringify(info.value));
+  alert("信息已持久化");
 };
 setInterval(() => {
   formateTime.value = formatDate();
@@ -126,6 +145,7 @@ header h1 {
   padding: 20px;
   height: calc(100vh - 60px);
   width: 100%;
+  overflow: scroll;
 }
 .id-card {
   position: relative;
@@ -201,8 +221,9 @@ header h1 {
   letter-spacing: 2px;
 }
 .info-area {
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: #fff;
+  border-radius: 20px;
 }
 .info-item {
   display: flex;
@@ -215,8 +236,11 @@ header h1 {
 .info-item input {
   flex: 1;
 }
-.submit-btn {
-  margin-top: 5px;
+.btn-group {
+  padding: 10px 10px;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
 }
 </style>
