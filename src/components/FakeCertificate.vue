@@ -136,7 +136,7 @@ header h1 {
   color: #fff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 230px;
+  height: 220px;
   width: 100%;
   padding: 25px;
   padding-top: 50px;
@@ -157,7 +157,8 @@ header h1 {
   font-size: 1.4rem;
 }
 .id-card .base-info {
-  margin-top: 10px;
+  margin-top: 8px;
+  font-size: 0.9rem;
 }
 .code-image {
   margin-top: 20px;
@@ -170,7 +171,7 @@ header h1 {
   justify-content: center;
   width: 100%;
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .time {
   display: flex;
