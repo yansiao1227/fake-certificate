@@ -98,6 +98,10 @@ const defaultInfo = {
 };
 
 const tempInfo = JSON.parse(localStorage.getItem("info") || "{}");
+// 有缓存还需保证今天的时间
+if (Object.keys(tempInfo).length > 0)
+  tempInfo.date = formatDate().split(" ")[0];
+
 const info = ref(Object.keys(tempInfo).length > 0 ? tempInfo : defaultInfo);
 
 const isShow = ref(false);
